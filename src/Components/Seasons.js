@@ -46,7 +46,7 @@ const Seasons = ({ seasons }) => {
           <SeasonPoster
             src={
               season.poster_path
-                ? `https://image.tmdb.org/t/p/w300${season.poster_path}`
+                ? `https://image.tmdb.org/t/p/original${season.poster_path}`
                 : require("../assets/default_cover.jpg")
             }
           />
