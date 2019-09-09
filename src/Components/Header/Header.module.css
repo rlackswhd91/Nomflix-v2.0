@@ -1,0 +1,6 @@
+/* module로 할때 클래스이름이 '-' 가들어가면안됨 마이너스로 처리함. */
+/* module.css는 css와달리 style.클래스이름으로 className어트리뷰트에 전달할수있다. */
+.navList {
+  display: flex;
+  list-style-type: none;
+}
