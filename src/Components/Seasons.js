@@ -7,6 +7,7 @@ const SeasonsContainer = styled.div`
   flex-direction: column;
 `;
 const SeasonContainer = styled.div`
+  height: 100%;
   width: 100%;
   display: flex;
   margin-bottom: 10px;
@@ -15,7 +16,7 @@ const SeasonPoster = styled.div`
   background-image: url(${props => props.src});
   background-size: cover;
   background-position: 50% 15%;
-  height: 100px;
+  height: 20vw;
   flex: 30%;
 `;
 const SeasonMeta = styled.div`
@@ -28,6 +29,7 @@ const SeasonTitleBox = styled.div`
 const SeasonOverView = styled.div`
   width: 70%;
   opacity: 0.7;
+  line-height: 1.7;
 `;
 const Divider = styled.span`
   margin: 0 10px;
@@ -57,8 +59,9 @@ const Seasons = ({ seasons }) => {
               <EpisodeCount>{season.episode_count} episodes</EpisodeCount>
             </SeasonTitleBox>
             <SeasonOverView>
+              {!season.overview && "No Overview"}
               {season.overview && season.overview.length > 250
-                ? `${season.overview.substr(0, 250)}...`
+                ? `${season.overview.substr(0, 350)}...`
                 : season.overview}
             </SeasonOverView>
           </SeasonMeta>
