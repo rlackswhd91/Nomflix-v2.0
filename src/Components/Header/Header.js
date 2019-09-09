@@ -53,6 +53,11 @@ export default withRouter(({ location: { pathname } }) => (
           Search
         </SLink>
       </Item>
+      <Item current={pathname === "/sign"}>
+        <SLink to="/sign" activeclassname="active">
+          Sign In
+        </SLink>
+      </Item>
     </List>
   </Header>
 ));

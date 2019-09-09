@@ -10,6 +10,7 @@ import TV from "../Routes/TV";
 import Search from "../Routes/Search";
 import Header from "./Header/Header";
 import Detail from "../Routes/Detail";
+import SignPage from "../Routes/SignPage";
 
 export default () => (
   <>
@@ -17,6 +18,7 @@ export default () => (
       <Header></Header>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/sign" exact component={SignPage} />
         <Route path="/tv" exact component={TV} />
         <Route path="/search" component={Search} />
         <Route path="/movie/:id" component={Detail}></Route>

@@ -7,7 +7,9 @@ const VideoContainer = styled.div`
   grid-column-gap: 10px;
 `;
 const Video = styled.iframe`
-  width: 100%;
+  width: 30vw;
+  margin: auto;
+  height: 20vw;
 `;
 const Videos = ({ videos }) => {
   return (
