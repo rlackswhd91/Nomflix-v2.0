@@ -82,14 +82,14 @@ const SignUpForm = ({ active }) => {
       <Form>
         <Title>Create Account</Title>
         <SocialContainer>
-          <Link href="#" class="social">
-            <i class="fab fa-facebook-f"></i>
+          <Link href="#" className="social">
+            <i className="fab fa-facebook-f"></i>
           </Link>
-          <Link href="#" class="social">
-            <i class="fab fa-google-plus-g"></i>
+          <Link href="#" className="social">
+            <i className="fab fa-google-plus-g"></i>
           </Link>
-          <Link href="#" class="social">
-            <i class="fab fa-github"></i>
+          <Link href="#" className="social">
+            <i className="fab fa-github"></i>
           </Link>
         </SocialContainer>
         <span>or use your email for registration</span>

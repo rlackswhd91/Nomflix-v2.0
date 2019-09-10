@@ -4,6 +4,7 @@ import Seasons from "./Seasons";
 import Countries from "./Countries";
 import Companies from "./Companies";
 import Videos from "./Videos";
+import Collection from "./Collection";
 
 const TabContainer = styled.div`
   /* height: 100%; */
@@ -34,7 +35,7 @@ const TabContent = styled.div`
   height: 100%;
 `;
 
-const Tabs = ({ videos, companies, countries, seasons }) => {
+const Tabs = ({ videos, companies, countries, seasons, collection }) => {
   const [currentTab, setCurrentTab] = useState("videos");
   const handleClick = tab => setCurrentTab(tab);
   return (
@@ -46,6 +47,22 @@ const Tabs = ({ videos, companies, countries, seasons }) => {
         >
           Videos
         </TabItem>
+        {seasons && (
+          <TabItem
+            onClick={() => handleClick("seasons")}
+            active={currentTab === "seasons"}
+          >
+            Seasons
+          </TabItem>
+        )}
+        {collection && (
+          <TabItem
+            onClick={() => handleClick("collection")}
+            active={currentTab === "collection"}
+          >
+            Collection
+          </TabItem>
+        )}
         <TabItem
           onClick={() => handleClick("companies")}
           active={currentTab === "companies"}
@@ -58,14 +75,6 @@ const Tabs = ({ videos, companies, countries, seasons }) => {
         >
           Countries
         </TabItem>
-        {seasons && (
-          <TabItem
-            onClick={() => handleClick("seasons")}
-            active={currentTab === "seasons"}
-          >
-            Seasons
-          </TabItem>
-        )}
       </TabList>
       <TabContent>
         {currentTab === "videos" && <Videos videos={videos}></Videos>}
@@ -76,6 +85,9 @@ const Tabs = ({ videos, companies, countries, seasons }) => {
           <Countries countries={countries}></Countries>
         )}
         {currentTab === "seasons" && <Seasons seasons={seasons}></Seasons>}
+        {currentTab === "collection" && (
+          <Collection collection={collection}></Collection>
+        )}
       </TabContent>
     </TabContainer>
   );

@@ -81,14 +81,14 @@ const SignInForm = ({ active }) => {
       <Form>
         <Title>Sign In</Title>
         <SocialContainer>
-          <Link href="#" class="social">
-            <i class="fab fa-facebook-f"></i>
+          <Link href="#" className="social">
+            <i className="fab fa-facebook-f"></i>
           </Link>
-          <Link href="#" class="social">
-            <i class="fab fa-google-plus-g"></i>
+          <Link href="#" className="social">
+            <i className="fab fa-google-plus-g"></i>
           </Link>
-          <Link href="#" class="social">
-            <i class="fab fa-github"></i>
+          <Link href="#" className="social">
+            <i className="fab fa-github"></i>
           </Link>
         </SocialContainer>
         <span>or use your account</span>

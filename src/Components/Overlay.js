@@ -97,7 +97,7 @@ const Overlays = ({ active, setActive, setInActive }) => (
         <Paragraph>
           To keep connected with us please login with your personal info
         </Paragraph>
-        <GhostButton class="ghost" id="signIn" onClick={setInActive}>
+        <GhostButton className="ghost" id="signIn" onClick={setInActive}>
           Sign In
         </GhostButton>
       </LeftPanel>
@@ -106,7 +106,7 @@ const Overlays = ({ active, setActive, setInActive }) => (
         <Paragraph>
           Enter your personal details and start journey with us
         </Paragraph>
-        <GhostButton class="ghost" id="signUp" onClick={setActive}>
+        <GhostButton className="ghost" id="signUp" onClick={setActive}>
           Sign Up
         </GhostButton>
       </RightPanel>

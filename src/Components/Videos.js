@@ -9,7 +9,7 @@ const VideoContainer = styled.div`
 const Video = styled.iframe`
   width: 30vw;
   margin: auto;
-  height: 20vw;
+  height: 16vw;
 `;
 const Videos = ({ videos }) => {
   return (

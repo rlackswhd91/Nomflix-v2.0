@@ -22,19 +22,7 @@ export const moviesApi = {
         append_to_response: "videos"
       }
     }),
-  sortByOption: option =>
-    api.get(`discover/movie`, {
-      params: {
-        // revenue.asc(desc) , primary_release_date.asc(desc), vote_count.asc(desc),vote_average.asc(desc)
-        sort_by: option
-      }
-    }),
-  searchByYear: year =>
-    api.get(`search/movie`, {
-      params: {
-        year
-      }
-    }),
+
   // term should be uri encoded suggested by api doc.
   search: term =>
     api.get("search/movie", {
@@ -52,15 +40,19 @@ export const tvApi = {
         append_to_response: "videos"
       }
     }),
-  sortByOption: option =>
-    api.get(`discover/movie`, {
-      params: {
-        //  first_air_date.asc(desc), vote_average.asc(desc)
-        sort_by: option
-      }
-    }),
+  seasonDetail: (tvId, seasonNumber) =>
+    api.get(`tv/${tvId}/season/${seasonNumber}`),
   search: term =>
     api.get("search/tv", {
       params: { query: encodeURIComponent(term) }
+    })
+};
+
+export const collectionApi = {
+  collectionDetail: id =>
+    api.get(`collection/${id}`, {
+      params: {
+        append_to_response: "videos"
+      }
     })
 };

@@ -21,9 +21,9 @@ const Container = styled.div`
 `;
 const SignPage = () => {
   const [active, setActive] = useState(false);
-  console.log(active);
+
   return (
-    <Container class="container" id="container">
+    <Container>
       {active ? <div>active</div> : <div>notactive</div>}
       <SignUpForm active={active}></SignUpForm>
       <SignInForm active={active}></SignInForm>

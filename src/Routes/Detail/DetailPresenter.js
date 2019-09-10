@@ -159,7 +159,8 @@ const DetailPresenter = ({ result, loading, error }) =>
             companies={result.production_companies}
             countries={result.production_countries || result.origin_country}
             seasons={result.seasons}
-          ></Tabs>
+            collection={result.belongs_to_collection}
+          />
         </Data>
       </Content>
     </Container>
