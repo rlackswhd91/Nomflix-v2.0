@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const Image = styled.div`
   background-image: url(${props => props.imageUrl});
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   background-size: cover;
   background-position: center center;
   border-radius: 10px;

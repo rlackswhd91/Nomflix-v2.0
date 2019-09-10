@@ -100,7 +100,7 @@ const SubContainer = styled.div`
 `;
 const SLink = styled(Link)`
   display: block;
-  height: 100%;
+  /* height: 100%; dont do this */
   width: 100%;
   margin-bottom: 20px;
 `;
