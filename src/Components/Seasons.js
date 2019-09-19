@@ -12,7 +12,9 @@ const SeasonPoster = styled.div`
   background-position: 50% 15%;
   height: 15vw;
   width: 30%;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+  /* overflow: hidden; */
 `;
 
 const SeasonContainer = styled.div`

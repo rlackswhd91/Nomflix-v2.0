@@ -60,7 +60,7 @@ const Title = styled.h3`
   margin-bottom: 2rem;
 `;
 const OverView = styled.p`
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.5;
   width: 90%;
   opacity: 0.7;

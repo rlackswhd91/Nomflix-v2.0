@@ -208,10 +208,15 @@ const CollectionPage = ({
                       <SubInfo>
                         <Subtitle>{part.title}</Subtitle>
                         <Divider>•</Divider>
-                        <Year>{part.release_date.substr(0, 4)}</Year>
+                        <Year>
+                          {part.release_date
+                            ? part.release_date.substr(0, 4)
+                            : "Unknown"}
+                        </Year>
                         <SubOverView>
                           {part.overview.length > 250
-                            ? `${part.overview.substr(0, 250)}...`
+                            ? `${part.overview &&
+                                part.overview.substr(0, 250)}...`
                             : part.overview}
                         </SubOverView>
                       </SubInfo>

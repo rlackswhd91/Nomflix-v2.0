@@ -10,6 +10,7 @@ const Video = styled.iframe`
   width: 30vw;
   margin: auto;
   height: 16vw;
+  border-radius: 12px;
 `;
 const Videos = ({ videos }) => {
   return (

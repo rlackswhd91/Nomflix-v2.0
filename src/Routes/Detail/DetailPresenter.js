@@ -69,6 +69,7 @@ const ItemContainer = styled.div`
 const Item = styled.span``;
 const IMDB = styled.img`
   height: 30px;
+  transform: translateY(10%);
 `;
 const Divider = styled.span`
   margin: 0 10px;
