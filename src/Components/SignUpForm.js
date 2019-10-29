@@ -76,10 +76,15 @@ const Button = styled.button`
     outline: none;
   }
 `;
+
 const SignUpForm = ({ active }) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    alert("Sign up function has not been implemented yet.");
+  };
   return (
     <Container active={active}>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Title>Create Account</Title>
         <SocialContainer>
           <Link href="#" className="social">

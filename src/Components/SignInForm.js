@@ -76,9 +76,13 @@ const Button = styled.button`
   }
 `;
 const SignInForm = ({ active }) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    alert("Log In function has not been implemented yet.");
+  };
   return (
     <Container active={active}>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Title>Sign In</Title>
         <SocialContainer>
           <Link href="#" className="social">
