@@ -13,10 +13,12 @@ const SeasonsContainer = withReveal(
 );
 const SeasonPoster = styled.div`
   background-image: url(${props => props.src});
-  background-size: cover;
-  background-position: 50% 15%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 5px;
+  width: 20%;
   height: 15vw;
-  width: 30%;
   transition: all 0.3s ease-in-out;
   border-radius: 12px;
   /* overflow: hidden; */

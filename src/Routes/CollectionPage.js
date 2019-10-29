@@ -88,11 +88,12 @@ const ItemContainer = styled.div`
 
 const SubPoster = styled.div`
   background-image: url(${props => props.bgUrl});
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center center;
   border-radius: 5px;
   height: 15vw;
-  width: 30%;
+  width: 20%;
   transition: all 0.3s ease-in-out;
   backface-visibility: hidden;
 `;
@@ -184,7 +185,7 @@ const CollectionPage = ({
         <BackDrop
           bgUrl={
             result.backdrop_path
-              ? `https://image.tmdb.org/t/p/original${result.backdrop_path}`
+              ? `https://image.tmdb.org/t/p/w200${result.backdrop_path}`
               : require("../assets/default_backdrop.jpg")
           }
         />

@@ -88,10 +88,11 @@ const SubContainer = styled.div`
 
 const SubPoster = styled.div`
   background-image: url(${props => props.bgUrl});
-  background-size: cover;
-  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center 0;
   border-radius: 5px;
-  height: 15vw;
+  height: 10vw;
   width: 30%;
 `;
 
@@ -172,7 +173,7 @@ const SeasonPage = ({
         <BackDrop
           bgUrl={
             result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+              ? `https://image.tmdb.org/t/p/w200${result.poster_path}`
               : require("../assets/default_backdrop.jpg")
           }
         />
