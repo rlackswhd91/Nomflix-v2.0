@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import styled from "styled-components";
 import Seasons from "./Seasons";
 import Countries from "./Countries";
@@ -76,6 +76,7 @@ const Tabs = ({ videos, companies, countries, seasons, collection }) => {
           Countries
         </TabItem>
       </TabList>
+
       <TabContent>
         {currentTab === "videos" && <Videos videos={videos}></Videos>}
         {currentTab === "companies" && (

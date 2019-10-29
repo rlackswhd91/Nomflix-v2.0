@@ -4,6 +4,8 @@ import Helmet from "react-helmet";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
+import Fade from "react-reveal/Fade";
+import Slide from "react-reveal/Slide";
 
 const Container = styled.div`
   position: relative;
@@ -31,9 +33,11 @@ const Content = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+  & > :first-child {
+    width: 30%;
+  }
 `;
 const Cover = styled.div`
-  width: 30%;
   height: 100%;
   background-image: url(${props => props.bgUrl});
   background-size: cover;
@@ -49,6 +53,7 @@ const Data = styled.div`
   ::-webkit-scrollbar-thumb {
     background: rgba(204, 204, 214, 0.4);
   }
+  overflow-x: hidden;
   overflow-y: scroll;
   width: 70%;
   height: 100%;
@@ -172,44 +177,52 @@ const SeasonPage = ({
           }
         />
         <Content>
-          <Cover
-            bgUrl={
-              result.poster_path
-                ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-                : require("../assets/default_cover.jpg")
-            }
-          />
+          <Slide top delay={200}>
+            <Cover
+              bgUrl={
+                result.poster_path
+                  ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                  : require("../assets/default_cover.jpg")
+              }
+            />
+          </Slide>
           <Data>
-            <Title>{result.name}</Title>
-            <OverView>{result.overview}</OverView>
-            <ItemContainer>
-              {result.episodes &&
-                result.episodes.length > 0 &&
-                result.episodes.map((episode, index) => (
-                  <SubContainer key={index}>
-                    <SubPoster
-                      bgUrl={
-                        episode.still_path
-                          ? `https://image.tmdb.org/t/p/original${episode.still_path}`
-                          : require("../assets/default_cover.jpg")
-                      }
-                    />
+            <Slide right delay={600}>
+              <Title>{result.name}</Title>
+            </Slide>
+            <Slide right delay={800}>
+              <OverView>{result.overview}</OverView>
+            </Slide>
+            <Fade delay={1200}>
+              <ItemContainer>
+                {result.episodes &&
+                  result.episodes.length > 0 &&
+                  result.episodes.map((episode, index) => (
+                    <SubContainer key={index}>
+                      <SubPoster
+                        bgUrl={
+                          episode.still_path
+                            ? `https://image.tmdb.org/t/p/original${episode.still_path}`
+                            : require("../assets/default_cover.jpg")
+                        }
+                      />
 
-                    <SubInfo>
-                      <Subtitle>
-                        {episode.episode_number}. {episode.name}
-                      </Subtitle>
-                      <Divider>•</Divider>
-                      <Year>{episode.air_date}</Year>
-                      <SubOverView>
-                        {episode.overview.length > 350
-                          ? `${episode.overview.substr(0, 350)}...`
-                          : episode.overview}
-                      </SubOverView>
-                    </SubInfo>
-                  </SubContainer>
-                ))}
-            </ItemContainer>
+                      <SubInfo>
+                        <Subtitle>
+                          {episode.episode_number}. {episode.name}
+                        </Subtitle>
+                        <Divider>•</Divider>
+                        <Year>{episode.air_date}</Year>
+                        <SubOverView>
+                          {episode.overview.length > 350
+                            ? `${episode.overview.substr(0, 350)}...`
+                            : episode.overview}
+                        </SubOverView>
+                      </SubInfo>
+                    </SubContainer>
+                  ))}
+              </ItemContainer>
+            </Fade>
           </Data>
         </Content>
       </Container>

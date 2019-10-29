@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-const SeasonsContainer = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
+import Fade from "react-reveal/Fade";
+import withReveal from "react-reveal/withReveal";
+const SeasonsContainer = withReveal(
+  styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  `,
+  <Fade />
+);
 const SeasonPoster = styled.div`
   background-image: url(${props => props.src});
   background-size: cover;
@@ -73,7 +78,7 @@ const Seasons = ({
             <SeasonPoster
               src={
                 season.poster_path
-                  ? `https://image.tmdb.org/t/p/original${season.poster_path}`
+                  ? `https://image.tmdb.org/t/p/w500${season.poster_path}`
                   : require("../assets/default_cover.jpg")
               }
             />

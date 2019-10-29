@@ -4,6 +4,8 @@ import Helmet from "react-helmet";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
+import Slide from "react-reveal/Slide";
+import Fade from "react-reveal/Fade";
 
 const Container = styled.div`
   position: relative;
@@ -31,9 +33,12 @@ const Content = styled.div`
   height: 100%;
   display: flex;
   position: relative;
+  & > :first-child {
+    width: 30%;
+  }
 `;
 const Cover = styled.div`
-  width: 30%;
+  /* width: 30%; */
   height: 100%;
   background-image: url(${props => props.bgUrl});
   background-size: cover;
@@ -54,6 +59,8 @@ const Data = styled.div`
   ::-webkit-scrollbar-thumb {
     background: rgba(204, 204, 214, 0.4);
   }
+
+  overflow-x: hidden;
   overflow-y: scroll;
   width: 70%;
   height: 100%;
@@ -182,48 +189,58 @@ const CollectionPage = ({
           }
         />
         <Content>
-          <Cover
-            bgUrl={
-              result.poster_path
-                ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-                : require("../assets/default_cover.jpg")
-            }
-          ></Cover>
+          <Slide top delay={200}>
+            <Cover
+              bgUrl={
+                result.poster_path
+                  ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                  : require("../assets/default_cover.jpg")
+              }
+            ></Cover>
+          </Slide>
+
           <Data>
-            <Title>{result.name}</Title>
-            <OverView>{result.overview}</OverView>
-            <ItemContainer>
-              {result.parts &&
-                result.parts.length > 0 &&
-                result.parts.map((part, index) => (
-                  <SLink to={`/movie/${part.id}`} key={part.id}>
-                    <SubContainer>
-                      <SubPoster
-                        bgUrl={
-                          part.poster_path
-                            ? `https://image.tmdb.org/t/p/original${part.poster_path}`
-                            : require("../assets/default_cover.jpg")
-                        }
-                      ></SubPoster>
-                      <SubInfo>
-                        <Subtitle>{part.title}</Subtitle>
-                        <Divider>•</Divider>
-                        <Year>
-                          {part.release_date
-                            ? part.release_date.substr(0, 4)
-                            : "Unknown"}
-                        </Year>
-                        <SubOverView>
-                          {part.overview.length > 250
-                            ? `${part.overview &&
-                                part.overview.substr(0, 250)}...`
-                            : part.overview}
-                        </SubOverView>
-                      </SubInfo>
-                    </SubContainer>
-                  </SLink>
-                ))}
-            </ItemContainer>
+            <Slide right delay={400}>
+              <Title>{result.name}</Title>
+            </Slide>
+            <Slide right delay={800}>
+              <OverView>{result.overview}</OverView>
+            </Slide>
+
+            <Fade delay={1200}>
+              <ItemContainer>
+                {result.parts &&
+                  result.parts.length > 0 &&
+                  result.parts.map((part, index) => (
+                    <SLink to={`/movie/${part.id}`} key={part.id}>
+                      <SubContainer>
+                        <SubPoster
+                          bgUrl={
+                            part.poster_path
+                              ? `https://image.tmdb.org/t/p/original${part.poster_path}`
+                              : require("../assets/default_cover.jpg")
+                          }
+                        ></SubPoster>
+                        <SubInfo>
+                          <Subtitle>{part.title}</Subtitle>
+                          <Divider>•</Divider>
+                          <Year>
+                            {part.release_date
+                              ? part.release_date.substr(0, 4)
+                              : "Unknown"}
+                          </Year>
+                          <SubOverView>
+                            {part.overview.length > 250
+                              ? `${part.overview &&
+                                  part.overview.substr(0, 250)}...`
+                              : part.overview}
+                          </SubOverView>
+                        </SubInfo>
+                      </SubContainer>
+                    </SLink>
+                  ))}
+              </ItemContainer>
+            </Fade>
           </Data>
         </Content>
       </Container>

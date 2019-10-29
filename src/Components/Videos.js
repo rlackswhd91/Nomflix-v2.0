@@ -1,5 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
+
 const VideoContainer = styled.div`
   height: 100%;
   display: grid;
@@ -12,7 +13,8 @@ const Video = styled.iframe`
   height: 16vw;
   border-radius: 12px;
 `;
-const Videos = ({ videos }) => {
+
+const Videos = memo(({ videos }) => {
   return (
     <VideoContainer>
       {videos.results.length === 0 && <p>No promotion videos</p>}
@@ -33,5 +35,5 @@ const Videos = ({ videos }) => {
       })}
     </VideoContainer>
   );
-};
+});
 export default Videos;

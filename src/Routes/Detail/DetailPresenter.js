@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Proptypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Helmet from "react-helmet";
 import Tabs from "../../Components/Tabs";
+import Slide from "react-reveal/Slide";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -34,20 +35,25 @@ const Content = styled.div`
   display: flex;
   /* because of backdrop position absolute up above, height becomes 0, so specify height */
   height: 100%;
+  & > :first-child {
+    width: 30%;
+  }
 `;
+
 const Cover = styled.div`
+  position: relative;
   height: 100%;
-  width: 30%;
+  /* width: 30%; */
+  height: 100%;
   background-image: url(${props => props.imageUrl});
   background-position: center;
   background-size: cover;
-  height: 100%;
   border-radius: 5px;
 `;
 
 const Data = styled.div`
   width: 70%;
-  margin-left: 10px;
+  padding-left: 20px;
   ::-webkit-scrollbar {
     width: 20px; /* remove scrollbar space */
     background: rgba(0, 0, 0, 0.2);
@@ -55,6 +61,7 @@ const Data = styled.div`
   ::-webkit-scrollbar-thumb {
     background: rgba(204, 204, 214, 0.4);
   }
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 const Title = styled.h3`
@@ -80,92 +87,113 @@ const Overview = styled.p`
   opacity: 0.7;
   line-height: 1.5;
 `;
-const DetailPresenter = ({ result, loading, error }) =>
-  loading ? (
-    <>
-      <Helmet>
-        <title>loading | Nomflix</title>
-      </Helmet>
-      <Loader></Loader>
-    </>
-  ) : (
-    <Container>
-      <Helmet>
-        <title>
-          {result.original_title ? result.original_title : result.original_name}{" "}
-          | Nomflix
-        </title>
-      </Helmet>
-      <Backdrop
-        imageUrl={
-          result.backdrop_path
-            ? `https://image.tmdb.org/t/p/original${result.backdrop_path}`
-            : require("../../assets/default_backdrop.jpg")
-        }
-      ></Backdrop>
-      <Content>
-        <Cover
-          imageUrl={
-            result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-              : require("../../assets/default_cover.jpg")
-          }
-        ></Cover>
-        <Data>
-          <Title>
+
+const DetailPresenter = ({ result, loading, error }) => {
+  useEffect(() => {
+    console.log("rerendering");
+  }, [result]);
+  console.log(result);
+  {
+    return loading ? (
+      <>
+        <Helmet>
+          <title>loading | Nomflix</title>
+        </Helmet>
+        <Loader></Loader>
+      </>
+    ) : (
+      <Container>
+        <Helmet>
+          <title>
             {result.original_title
               ? result.original_title
-              : result.original_name}
-          </Title>
-          <ItemContainer>
-            <Item>
-              {result.release_date && result.release_date.substring(0, 4)}
-              {result.first_air_date && result.first_air_date.substring(0, 4)}
-            </Item>
-            <Divider>▪</Divider>
-            <Item>
-              {result.runtime || result.episode_run_time
-                ? result.runtime || result.episode_run_time[0]
-                : 0}{" "}
-              minutes
-            </Item>
-            <Divider>▪</Divider>
-            <Item>
-              {result.genres.map((genre, index) =>
-                index === result.genres.length - 1
-                  ? genre.name
-                  : `${genre.name} / `
-              )}
-            </Item>
-            {result.imdb_id && (
-              <>
+              : result.original_name}{" "}
+            | Nomflix
+          </title>
+        </Helmet>
+
+        <Backdrop
+          imageUrl={
+            result.backdrop_path
+              ? `https://image.tmdb.org/t/p/w200${result.backdrop_path}`
+              : require("../../assets/default_backdrop.jpg")
+          }
+        ></Backdrop>
+
+        <Content>
+          <Slide top delay={200}>
+            <Cover
+              imageUrl={
+                result.poster_path
+                  ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                  : require("../../assets/default_cover.jpg")
+              }
+            />
+          </Slide>
+          <Data>
+            <Slide right delay={600}>
+              <Title>
+                {result.original_title
+                  ? result.original_title
+                  : result.original_name}
+              </Title>
+              <ItemContainer>
+                <Item>
+                  {result.release_date && result.release_date.substring(0, 4)}
+                  {result.first_air_date &&
+                    result.first_air_date.substring(0, 4)}
+                </Item>
                 <Divider>▪</Divider>
-                <a
-                  href={`https://www.imdb.com/title/${result.imdb_id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <IMDB src={require("../../assets/imdb.png")}></IMDB>
-                </a>
-              </>
-            )}
-            <Divider>▪</Divider>
-            <Item role="img" aria-label="rating">
-              ⭐{result.vote_average} / 10
-            </Item>
-          </ItemContainer>
-          <Overview>{result.overview}</Overview>
-          <Tabs
-            videos={result.videos}
-            companies={result.production_companies}
-            countries={result.production_countries || result.origin_country}
-            seasons={result.seasons}
-            collection={result.belongs_to_collection}
-          />
-        </Data>
-      </Content>
-    </Container>
-  );
+                <Item>
+                  {result.runtime || result.episode_run_time
+                    ? result.runtime || result.episode_run_time[0]
+                    : 0}{" "}
+                  minutes
+                </Item>
+                <Divider>▪</Divider>
+                <Item>
+                  {result.genres.map((genre, index) =>
+                    index === result.genres.length - 1
+                      ? genre.name
+                      : `${genre.name} / `
+                  )}
+                </Item>
+                {result.imdb_id && (
+                  <>
+                    <Divider>▪</Divider>
+                    <a
+                      href={`https://www.imdb.com/title/${result.imdb_id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IMDB src={require("../../assets/imdb.png")}></IMDB>
+                    </a>
+                  </>
+                )}
+                <Divider>▪</Divider>
+                <Item role="img" aria-label="rating">
+                  ⭐{result.vote_average} / 10
+                </Item>
+              </ItemContainer>
+            </Slide>
+            <Slide right delay={1000}>
+              <Overview>{result.overview}</Overview>
+            </Slide>
+            <Slide right delay={1400}>
+              <Tabs
+                videos={result.videos}
+                companies={result.production_companies}
+                countries={result.production_countries || result.origin_country}
+                seasons={result.seasons}
+                collection={result.belongs_to_collection}
+              />
+            </Slide>
+          </Data>
+        </Content>
+      </Container>
+    );
+  }
+};
 
 DetailPresenter.propTypes = {
   result: Proptypes.object,
